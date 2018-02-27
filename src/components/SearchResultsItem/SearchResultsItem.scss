@@ -1,0 +1,23 @@
+.list-item {
+  margin-bottom: 10px;
+  border-bottom: 1px solid;
+  padding-bottom: 10px;
+  .img-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      border-radius: 50%;
+      height: 100px;
+    }
+  }
+  .content-wrapper {
+    p {
+      text-align: left;
+      margin-bottom: 10px;
+      &.resupply {
+        //text-align: center;
+      }
+    }
+  }
+}

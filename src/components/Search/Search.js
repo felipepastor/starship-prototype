@@ -13,7 +13,7 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="col-md-12">
+      <div className="col-md-6">
         <form onSubmit={this.props.onHandleSubmit}>
           <div className="form-group">
             <div className="wrapper-search">
@@ -24,7 +24,7 @@ class Search extends Component {
               </button>
             </div>
             <small id="searchHelp" className="form-text text-muted">
-              We'll never share your email with anyone else. {this.props.mglt}
+              May the force be with you!
             </small>
           </div>
         </form>

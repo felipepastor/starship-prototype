@@ -3,6 +3,7 @@ import './App.css';
 
 import Search from '../Search/Search'
 import SearchResults from "../SearchResults/SearchResults";
+import Loading from "../Loading/Loading";
 
 import * as StarShipsAPI from '../../api/StarshipApi'
 
@@ -11,7 +12,9 @@ class App extends Component {
     super(props);
 
     this.state = {
-      mglt: "0"
+      mglt: 0,
+      availableStartShips: [],
+      loading: false
     };
 
     this.handleMGLTChange = this.handleMGLTChange.bind(this);
@@ -28,9 +31,16 @@ class App extends Component {
     try {
       e.preventDefault();
 
+      this.setState({
+        loading: true
+      });
+
       StarShipsAPI.search().then((data => {
+        this.setState({
+          loading: false
+        });
+
         this.calculateConsumableXMGLT(data);
-        this.renderSearchResults(data);
       }));
 
     } catch (err) {
@@ -40,15 +50,15 @@ class App extends Component {
 
   calculateConsumableXMGLT(data) {
     try {
-      const mgltInput = this.state.mglt;
-      let numberOfDays;
+      let finalStarships = [];
 
       data.filter(data => {
         if (typeof data.consumables === 'string') {
           const consumable = data.consumables.split(' ');
           const consumableNumber = consumable[0];
-          let calcMGLT = 0;
-          
+          let calcMGLT,
+            numberOfDays;
+
           switch (true) {
             case /week/.test(consumable[1]):
               numberOfDays = 7;
@@ -64,33 +74,35 @@ class App extends Component {
               break;
           }
 
-          calcMGLT = (parseFloat(this.state.mglt) / ((parseFloat(consumableNumber) * parseFloat(numberOfDays)) * 24 * parseFloat(data.MGLT)));
-          
-          console.log(data.name, calcMGLT);
-          
-          if (calcMGLT)  {
-               
+          if (this.state.mglt !== 0) {
+            calcMGLT = (parseFloat(this.state.mglt) / ((parseFloat(consumableNumber) * parseFloat(numberOfDays)) * 24 * parseFloat(data.MGLT)));
+          }
+
+          if (calcMGLT && !isNaN(calcMGLT)) {
+            data.stopsToResupply = calcMGLT.toFixed(2);
+            finalStarships.push(data);
           }
         }
-      }, this)
+      }, this);
+
+      return this.setState({
+        availableStartShips: finalStarships
+      });
 
     } catch (e) {
       throw e;
     }
   }
 
-  renderSearchResults(response) {
-    console.log(response);
-  }
-
   render() {
     return (
       <div className="App container-fluid">
-        <header className="App-header row">
+        <header className="App-header row justify-content-center">
           <Search onHandleSubmit={this.handleMGLTSubmit} onMGLTChange={this.handleMGLTChange} mglt={this.state.mglt}/>
         </header>
         <section className="row">
-          <SearchResults/>
+          <SearchResults starships={this.state.availableStartShips}/>
+          {(this.state.loading) ? <Loading /> : ''}
         </section>
       </div>
     );
