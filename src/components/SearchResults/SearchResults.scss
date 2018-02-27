@@ -1,0 +1,22 @@
+ul {
+  margin-top: 10px;
+  padding: 0;
+  .list-item {
+    margin-bottom: 10px;
+    border-bottom:1px solid;
+    padding-bottom: 10px;
+    .img-wrapper {
+      img {
+        border-radius: 50%;
+        height: 100px;
+      }
+    }
+    .content-wrapper {
+      p {
+        text-align: left;
+        margin-bottom: 10px;
+      }
+    }
+  }  
+}
+
