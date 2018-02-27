@@ -1,0 +1,16 @@
+.list-item {
+  margin-bottom: 10px;
+  border-bottom: 1px solid;
+  padding-bottom: 10px; }
+  .list-item .img-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .list-item .img-wrapper img {
+      border-radius: 50%;
+      height: 100px; }
+  .list-item .content-wrapper p {
+    text-align: left;
+    margin-bottom: 10px; }
+
+/*# sourceMappingURL=SearchResultsItem.css.map */

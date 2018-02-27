@@ -17,8 +17,8 @@ class Search extends Component {
         <form onSubmit={this.props.onHandleSubmit}>
           <div className="form-group">
             <div className="wrapper-search">
-              <input type="text" className="form-control" id="searchInput" aria-describedby="searchHelp"
-                     placeholder="Enter the distance in mega lights (MGLT)" onChange={this.handleChange}/>
+              <input type="number" className="form-control" id="searchInput" aria-describedby="searchHelp"
+                     placeholder="Enter the distance in mega lights (MGLT)" onChange={this.handleChange} />
               <button type="submit" className="btn btn-primary">
                 Search
               </button>
