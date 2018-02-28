@@ -46,7 +46,7 @@ describe('Testing App component', () => {
 
     appComponent.instance().calculateConsumableXMGLT(StarShipsMock);
 
-    expect(appComponent.state().availableStartShips.length).toBe(2);
+    expect(appComponent.state().availableStartShips.length).toBe(3);
     expect(parseInt(appComponent.state().availableStartShips[0].stopsToResupply)).toBe(3)
     expect(parseInt(appComponent.state().availableStartShips[1].stopsToResupply)).toBe(74)
   });
