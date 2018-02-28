@@ -29,8 +29,10 @@ class App extends Component {
 
   handleMGLTSubmit(e) {
     try {
-      e.preventDefault();
-
+      if(e) {
+        e.preventDefault();
+      }
+      
       this.setState({
         loading: true
       });
@@ -88,7 +90,7 @@ class App extends Component {
       });
 
     } catch (e) {
-      throw e;
+      console.error(e)
     }
   }
 
