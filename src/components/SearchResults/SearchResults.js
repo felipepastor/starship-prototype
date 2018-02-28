@@ -7,7 +7,7 @@ class SearchResults extends Component {
   renderSearchResultsItem() {
     if (this.props.starships.length) {
       return this.props.starships.map((starship, i) => {
-        return <SearchResultsItem id={i} starship={starship}/>
+        return <SearchResultsItem key={i} starship={starship}/>
       });
     }
 

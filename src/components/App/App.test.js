@@ -23,7 +23,9 @@ describe('Testing DOM behaviors', () => {
     expect(appComponent.find(SearchResults).length).toBe(1);
 
   });
-  
+});
+
+describe('Testing the functions', () => {
   
 });
 

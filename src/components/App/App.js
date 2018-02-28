@@ -50,9 +50,7 @@ class App extends Component {
 
   calculateConsumableXMGLT(data) {
     try {
-      let finalStarships = [];
-
-      data.filter(data => {
+      let finalStarships = data.filter(data => {
         if (typeof data.consumables === 'string') {
           const consumable = data.consumables.split(' ');
           const consumableNumber = consumable[0];
@@ -78,9 +76,9 @@ class App extends Component {
             calcMGLT = (parseFloat(this.state.mglt) / ((parseFloat(consumableNumber) * parseFloat(numberOfDays)) * 24 * parseFloat(data.MGLT)));
           }
 
-          if (calcMGLT && !isNaN(calcMGLT)) {
+          if (parseInt(calcMGLT) > 0 && !isNaN(calcMGLT)) {
             data.stopsToResupply = calcMGLT.toFixed(2);
-            finalStarships.push(data);
+            return data;
           }
         }
       }, this);
