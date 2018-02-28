@@ -32,6 +32,10 @@ class App extends Component {
       if(e) {
         e.preventDefault();
       }
+
+      if(parseInt(this.state.mglt) <= 0) {
+        return;
+      }
       
       this.setState({
         loading: true

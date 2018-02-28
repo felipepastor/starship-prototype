@@ -13,3 +13,10 @@ Install and run:
 
 
 You should see in your screen like that below:
+![Alt text](docs/image1.png?raw=true)
+![Alt text](docs/image2.png?raw=true)
+![Alt text](docs/image3.png?raw=true)
+
+To do:
+- Improve unit tests with mocks
+- Include redux to have a better state control in the components
